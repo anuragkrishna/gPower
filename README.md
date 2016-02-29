@@ -51,10 +51,15 @@ Routes:
 
 Comments:
   
-    1. Time and Location data could be used - time frequency distribution along with x,y coordinates to get an idea of device's responsiveness as per location. (I was having installation issues with numpy so left this)
+    1. Instead of db, an im memory dictionary has been used.
+    
+    2. Time and Location data could be used - time frequency distribution along with x,y coordinates to get an idea of device's responsiveness as per location. (I was having installation issues with numpy so left this)
 
-    2. Tried to minimize processing during server hit to keep the throughput high. All aggregation/analytics to be done on on raw data/events.
+    3. Tried to minimize processing during server hit to keep the throughput high. All aggregation/analytics to be done on on raw data/events collected.
   
+    4. Nonsensical data - data with wrong imsi, invalid time offset, invalid signal strength, invalid location could be ignored while report generation.
+    
+    5. For multiple base stations - As I understand: devices broadcast data and try to connect to bts with strongets signal so most of the config. has to be done on device end. Here what I have added is that in case a devie sends data with signal strength less than -100dBm, then we look up for an appropriate bts and send the location of that bts along with the content as response. So, that device could connect to that bts.
   
   
   
